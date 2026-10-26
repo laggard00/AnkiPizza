@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anki's Pizza — pizza catering</title>
+<meta name="description" content="Pizza catering za rođendane, uredske ručkove, barove, vjenčanja i kućne zabave. 8 € po ispečenoj pizzi, minimalno 20 pizza.">
+<meta name="theme-color" content="#F3EEE6">
+<link rel="preload" href="assets/AnkiDisplay.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap">
+<style>
+@font-face{font-family:'Anki Display';src:url(assets/AnkiDisplay.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+
+:root{
+  --cream:#F3EEE6;
+  --paper:#FFFDF9;
+  --wall:#EEE9E1;
+  --ink:#1A2340;
+  --ink-soft:#4A5272;
+  --blue:#1F4FB5;
+  --blue-dark:#163B88;
+  --blue-shade:rgba(31,79,181,.25);
+  --terracotta:#B8693F;
+  --tomato:#B8361E;
+  --basil:#2F5D3A;
+  --display:'Anki Display',sans-serif;
+  --body:'DM Sans',sans-serif;
+  --section-y:96px;
+  --gutter:24px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;overflow-x:hidden;caret-color:var(--blue);accent-color:var(--blue)}
+::selection{background:var(--blue);color:var(--cream)}
+[hidden]{display:none !important}
+h1,h2,h3,p,ol,ul{margin:0}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+img{display:block;max-width:100%;height:auto}
+
+a{color:var(--blue);text-underline-offset:.18em;text-decoration-thickness:2px}
+a:hover{color:var(--blue-dark)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+
+.wrap{max-width:1200px;margin:0 auto}
+.display{font-family:var(--display);font-weight:400;text-transform:uppercase}
+.section{padding:var(--section-y) var(--gutter)}
+.wall{background-color:var(--wall);background-image:url(assets/pozadina.jpg);background-size:cover;background-position:center}
+.retro{text-shadow:4px 4px 0 var(--cream),7px 7px 0 var(--blue-shade)}
+.pie{filter:drop-shadow(0 16px 18px rgba(60,35,20,.35)) drop-shadow(0 2px 3px rgba(60,35,20,.25))}
+
+/* Buttons */
+.btn{display:inline-flex;white-space:nowrap;align-items:center;justify-content:center;min-height:52px;padding:0 30px;font-family:var(--display);font-weight:400;font-size:22px;letter-spacing:.03em;text-transform:uppercase;text-decoration:none;border-radius:14px;border:3px solid var(--blue);cursor:pointer;transition:background-color .15s ease-out,color .15s ease-out,border-color .15s ease-out,box-shadow .12s ease-out,transform .12s ease-out}
+.btn:focus-visible{border-radius:14px;outline-offset:4px}
+.btn-solid{background:var(--blue);color:var(--cream);box-shadow:5px 5px 0 var(--blue-shade)}
+.btn-solid:hover{background:var(--blue-dark);border-color:var(--blue-dark);color:var(--cream)}
+.btn-solid:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--blue-shade)}
+.btn-line{background:var(--cream);color:var(--blue)}
+.btn-line:hover{background:var(--blue);color:var(--cream)}
+.btn-line:active{transform:translate(2px,2px)}
+.btn-sm{min-height:44px;font-size:18px;padding:0 20px}
+.btn[disabled]{opacity:.6;cursor:progress;transform:none}
+
+/* Header */
+.site-header{background:var(--cream);border-bottom:4px solid var(--terracotta)}
+.header-row{padding:18px var(--gutter);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px}
+.logo{font-size:36px;line-height:1;white-space:nowrap;text-decoration:none;color:var(--blue)}
+.site-nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px 28px;font-size:19px}
+.nav-link{text-decoration:none}
+.nav-link:hover{text-decoration:underline}
+
+/* Hero */
+.hero{padding:80px var(--gutter) 96px}
+.hero-inner{display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center}
+.hero h1{font-size:clamp(64px,11vw,148px);line-height:.92;color:var(--blue)}
+.pies{width:min(100%,1040px);display:flex;align-items:center;justify-content:space-between;gap:5%;padding:32px 0 28px}
+.pies img{flex:none;height:auto}
+.pies .p-rossa{width:25%;transform:translateY(-6%) rotate(-13deg)}
+.pies .p-margherita{width:34%;transform:translateY(22%) rotate(9deg)}
+.pies .p-verde{width:29%;transform:translateY(-10%) rotate(-7deg)}
+.pies-price{display:none;position:absolute;left:50%;top:50%;width:20%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:var(--blue);color:var(--cream);flex-direction:column;align-items:center;justify-content:center;font-size:clamp(11px,3.3vw,14px);line-height:1;white-space:nowrap;box-shadow:4px 4px 0 var(--blue-shade);z-index:2}
+.pies-price b{font-weight:400;font-size:2.3em;line-height:.9}
+.menu-hint{display:none;text-align:center;font-size:14px;color:var(--ink-soft);margin-top:-36px}
+.pies .orbit{display:contents}
+@keyframes orbit{to{rotate:360deg}}
+.hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:12px}
+
+/* Event types */
+.events{background:var(--blue);color:var(--cream);padding:18px var(--gutter)}
+.events p{text-align:center;font-size:30px;line-height:1.2;letter-spacing:.03em;text-wrap:balance}
+
+/* Pizzas */
+.pizzas-inner{display:flex;flex-direction:column;gap:48px}
+.section-head{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.section-head h2{font-size:clamp(52px,8vw,96px);line-height:.95;color:var(--blue)}
+.section-head p{max-width:540px}
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:32px}
+.card{background:var(--paper);border:3px solid var(--ink);border-radius:22px;box-shadow:8px 8px 0 var(--terracotta)}
+.pizza{padding:32px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.pizza-photo{height:280px;width:100%;display:flex;align-items:center;justify-content:center}
+.pizza h3{font-size:48px;line-height:1}
+.pizza .t-rossa{color:var(--tomato)}
+.pizza .t-verde{color:var(--basil)}
+.pizza .t-margherita{color:var(--blue)}
+.price{display:flex;flex-wrap:wrap;justify-content:center;gap:0 14px;text-align:center;font-size:30px;line-height:1.3;color:var(--blue)}
+.price span{white-space:nowrap}
+.price span+span::before{content:"·";margin-right:14px}
+
+/* How it works */
+.how-inner{display:flex;flex-direction:column;gap:40px}
+.how h2{font-size:clamp(52px,8vw,96px);line-height:.95;text-align:center;color:var(--blue)}
+.steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:28px}
+.step{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:8px;box-shadow:8px 8px 0 var(--blue)}
+.step-num{font-size:72px;line-height:1;color:var(--blue)}
+.step h3{font-size:28px;line-height:1.1}
+
+/* Booking */
+.booking{max-width:760px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:26px;padding:52px;box-shadow:10px 10px 0 var(--blue);display:flex;flex-direction:column;gap:28px}
+.booking-head{display:flex;flex-direction:column;gap:8px;text-align:center}
+.booking-head h2{font-size:clamp(48px,7vw,80px);line-height:.95;color:var(--blue)}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px 20px}
+.full{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:700;color:var(--ink)}
+.field .opt{font-weight:400;color:var(--ink-soft)}
+.field input,.field select,.field textarea{font:inherit;font-weight:400;font-size:16px;color:var(--ink);background:var(--paper);border:2px solid var(--ink);border-radius:10px;padding:12px 14px;min-height:48px;width:100%}
+.field textarea{resize:vertical;min-height:112px}
+.field ::placeholder{color:var(--ink-soft);opacity:1}
+.field input:focus,.field select:focus,.field textarea:focus{outline:3px solid rgba(31,79,181,.35);outline-offset:0;border-color:var(--blue)}
+.field input:user-invalid{border-color:var(--tomato)}
+.field input:user-invalid:focus{outline-color:rgba(184,54,30,.3)}
+.form-actions{display:flex;justify-content:center;margin-top:6px}
+.form-actions .btn{min-width:260px}
+.thanks{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding:24px 0}
+.thanks-title{font-size:48px;line-height:1;color:var(--blue)}
+.thanks-title:focus{outline:none}
+.thanks .btn{margin-top:8px}
+.contact-alt{text-align:center;font-size:15px}
+.contact-alt a{overflow-wrap:anywhere}
+.form-error{background:#FBE9E5;border:2px solid var(--tomato);border-radius:10px;padding:12px 16px;color:#8A2814;font-size:15px;font-weight:500}
+.form-error a{color:#8A2814;font-weight:700}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+
+/* Footer */
+.site-footer{border-top:4px solid var(--terracotta);background:var(--cream)}
+.footer-row{padding:32px var(--gutter) 40px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;font-size:15px}
+.footer-logo{font-size:30px;color:var(--blue)}
+
+@media (max-width:1039px){
+  .booking{padding:40px}
+}
+@media (max-width:719px){
+  .booking{padding:28px 24px}
+  :root{--section-y:64px;--gutter:20px}
+  .hero{padding:48px var(--gutter) 64px}
+  /* Pizzas orbit a shared centre instead of sitting in a row */
+  .pies{position:relative;display:block;width:min(92vw,380px);aspect-ratio:1;padding:0;margin:4px 0 -24px}
+  .pies .orbit{display:block;position:absolute;inset:0}
+  .pies img{position:absolute;width:40%}
+  .pies .p-rossa{left:50%;top:18%;width:30%;transform:translate(-50%,-50%) rotate(-13deg)}
+  .pies .p-margherita{left:76.85%;top:65.5%;transform:translate(-50%,-50%) rotate(9deg)}
+  .pies .p-verde{left:23.15%;top:65.5%;transform:translate(-50%,-50%) rotate(-7deg)}
+  .pies-price{display:flex}
+  /* Menu becomes a swipeable row with the next card peeking in */
+  .menu{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter) 14px;scrollbar-width:none;overscroll-behavior-x:contain}
+  .menu::-webkit-scrollbar{display:none}
+  .menu .card{flex:0 0 80%;scroll-snap-align:start}
+  .menu .pizza-photo{height:220px}
+  .menu .pizza-photo img{transform-origin:center;scale:.8}
+  .menu-hint{display:block}
+  .events p{font-size:24px}
+  .price{flex-direction:column;font-size:22px}
+  .price span{white-space:normal;text-wrap:balance}
+  .price span+span::before{content:none}
+  .pizza{padding:24px}
+  .step-num{font-size:60px}
+}
+@media (max-width:719px) and (prefers-reduced-motion:no-preference){
+  .pies .orbit{animation:orbit 48s linear infinite}
+}
+@media (max-width:599px){
+  .site-header{position:sticky;top:0;z-index:10}
+  section[id]{scroll-margin-top:76px}
+  .header-row{flex-wrap:nowrap;padding-top:14px;padding-bottom:14px;gap:12px}
+  .logo{font-size:26px}
+  .hide-sm{display:none}
+  .nav-link{display:none}
+  .site-nav .btn-sm{font-size:15px;min-height:44px;padding:0 14px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+<div class="wrap header-row">
+<a href="#top" class="logo display">Anki's Pizza</a>
+<nav aria-label="Glavni izbornik" class="site-nav display">
+<a class="nav-link" href="#pizzas">Pizze</a>
+<a class="nav-link" href="#how">Kako funkcionira</a>
+<a class="btn btn-solid btn-sm" href="#book">Rezerviraj<span class="hide-sm">&nbsp;catering</span></a>
+</nav>
+</div>
+</header>
+
+<main>
+<section id="top" class="hero wall">
+<div class="wrap hero-inner">
+<h1 class="display retro">Pizza party<br>dolazi k&nbsp;vama</h1>
+<div class="pies">
+<div class="orbit">
+<img class="pie p-rossa" src="assets/la-rossa.webp" width="727" height="900" alt="Pizza s rajčicom, kobasicom, gljivama i ricottom">
+<img class="pie p-margherita" src="assets/margherita.webp" width="900" height="661" alt="Pizza Margherita">
+<img class="pie p-verde" src="assets/la-verde.webp" width="900" height="820" alt="Pizza s pestom, tikvicama, sušenim rajčicama i gljivama">
+</div>
+<p class="pies-price display" aria-hidden="true"><b>8&nbsp;€</b>po pizzi</p>
+</div>
+<div class="hero-actions">
+<a class="btn btn-solid" href="#book">Rezerviraj datum</a>
+<a class="btn btn-line" href="#pizzas">Pogledaj pizze</a>
+</div>
+</div>
+</section>
+
+<div class="events display">
+<p class="wrap">Pečemo za bilo koji događaj, mali ili veliki</p>
+</div>
+
+<section id="pizzas" class="section">
+<div class="wrap pizzas-inner">
+<div class="section-head">
+<h2 class="display retro">Naše pizze</h2>
+<p>Ručno razvučene i pečene na licu mjesta. Odaberite jednu, više njih ili pitajte za nešto posebno.</p>
+</div>
+<div class="menu">
+<article class="card pizza">
+<div class="pizza-photo"><img class="pie" src="assets/la-rossa.webp" width="727" height="900" alt="" loading="lazy" style="width:226px;transform:rotate(-6deg)"></div>
+<h3 class="display t-rossa">La Rossa</h3>
+<p>Rajčica, mozzarella, kobasica, gljive, svježa ricotta</p>
+</article>
+<article class="card pizza">
+<div class="pizza-photo"><img class="pie" src="assets/la-verde.webp" width="900" height="820" alt="" loading="lazy" style="width:250px;transform:rotate(5deg)"></div>
+<h3 class="display t-verde">La Verde</h3>
+<p>Pesto od bosiljka, fior di latte, tikvice, sušene rajčice, gljive</p>
+</article>
+<article class="card pizza">
+<div class="pizza-photo"><img class="pie" src="assets/margherita.webp" width="900" height="661" alt="" loading="lazy" style="width:260px;transform:rotate(-3deg)"></div>
+<h3 class="display t-margherita">Margherita</h3>
+<p>Rajčica i mozzarella, klasika koja nikad ne promaši</p>
+</article>
+</div>
+<p class="menu-hint" aria-hidden="true">Povucite za više pizza →</p>
+<p class="price display"><span>Catering: 8&nbsp;€ po ispečenoj pizzi</span><span>minimalno 20 pizza</span></p>
+</div>
+</section>
+
+<section id="how" class="section how wall">
+<div class="wrap how-inner">
+<h2 class="display retro">Kako funkcionira</h2>
+<ol class="steps">
+<li class="step">
+<span class="step-num display" aria-hidden="true">1</span>
+<h3 class="display">Pošaljite detalje</h3>
+<p>Datum, mjesto i otprilike broj ljudi. Uz obrazac ispod to je gotovo za minutu.</p>
+</li>
+<li class="step">
+<span class="step-num display" aria-hidden="true">2</span>
+<h3 class="display">Dogovorimo meni</h3>
+<p>Javimo vam se s prijedlogom pizza, količinama i cijenom.</p>
+</li>
+<li class="step">
+<span class="step-num display" aria-hidden="true">3</span>
+<h3 class="display">Dolazimo i pečemo</h3>
+<p>Peć se pali, pizze izlaze jedna za drugom dok svi ne budu siti.</p>
+</li>
+</ol>
+</div>
+</section>
+
+<section id="book" class="section">
+<div class="booking">
+<div class="booking-head">
+<h2 class="display retro">Rezerviraj catering</h2>
+<p>Recite nam nešto o događaju i javit ćemo vam se u roku od 24 sata.</p>
+</div>
+<div id="booking-form">
+<form id="booking" class="form" action="https://formsubmit.co/andrijaceskic@gmail.com" method="POST">
+<input type="hidden" name="_subject" value="Novi upit za catering · Anki's Pizza">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+<label class="field">Ime i prezime<input type="text" name="Ime i prezime" id="booking-name" autocomplete="name" required></label>
+<label class="field">Telefon<input type="tel" name="Telefon" autocomplete="tel" required></label>
+<label class="field"><span>E-mail <span class="opt">(neobavezno)</span></span><input type="email" name="email" autocomplete="email"></label>
+<label class="field">Datum<input type="date" name="Datum" id="booking-date" required></label>
+<label class="field">Broj gostiju<input type="number" name="Broj gostiju" min="1" inputmode="numeric" required></label>
+<label class="field">Vrsta događaja<select name="Vrsta događaja"><option>Rođendan</option><option>Uredski ručak</option><option>Večer u baru ili klubu</option><option>Vjenčanje</option><option>Kućna zabava</option><option>Nešto drugo</option></select></label>
+<label class="field full"><span>Lokacija <span class="opt">(neobavezno)</span></span><input type="text" name="Lokacija" placeholder="Adresa ili naziv prostora"></label>
+<label class="field full"><span>Još nešto? <span class="opt">(neobavezno)</span></span><textarea name="Poruka" rows="4" placeholder="Omiljene pizze, prehrambena ograničenja, unutra ili vani…"></textarea></label>
+<p class="form-error full" id="booking-error" role="alert" hidden>Upit se nije uspio poslati. Pokušajte ponovno ili nas nazovite na <a href="tel:+385959150008">095 915 0008</a>.</p>
+<div class="form-actions full">
+<button class="btn btn-solid" type="submit" id="booking-submit">Pošalji upit</button>
+</div>
+</form>
+</div>
+<div id="booking-thanks" hidden>
+<div class="thanks" role="status">
+<p class="thanks-title display" id="booking-thanks-title" tabindex="-1">Hvala!</p>
+<p>Upit je poslan. Javit ćemo vam se uskoro da dogovorimo pizze.</p>
+<button class="btn btn-line" type="button" id="booking-again">Pošalji novi upit</button>
+</div>
+</div>
+<p class="contact-alt">Ili nas jednostavno nazovite ili pošaljite poruku: <a href="tel:+385959150008">095 915 0008</a> · <a href="mailto:andrijaceskic@gmail.com">andrijaceskic@gmail.com</a></p>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="wrap footer-row">
+<span class="footer-logo display">Anki's Pizza</span>
+<span><a href="#">@[instagram]</a> · [grad]</span>
+</div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('booking');
+  var wrap = document.getElementById('booking-form');
+  var thanks = document.getElementById('booking-thanks');
+  var date = document.getElementById('booking-date');
+
+  // No booking for days that have already passed
+  var now = new Date();
+  date.min = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+
+  var submit = document.getElementById('booking-submit');
+  var error = document.getElementById('booking-error');
+  var label = submit.textContent;
+
+  function setSending(on) {
+    submit.disabled = on;
+    submit.textContent = on ? 'Šaljem…' : label;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    error.hidden = true;
+    setSending(true);
+
+    var controller = 'AbortController' in window ? new AbortController() : null;
+    var timer = controller && setTimeout(function () { controller.abort(); }, 15000);
+
+    fetch('https://formsubmit.co/ajax/andrijaceskic@gmail.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form),
+      signal: controller ? controller.signal : undefined
+    })
+      .then(function (res) { return res.json().catch(function () { return {}; }).then(function (data) { return { ok: res.ok, data: data }; }); })
+      .then(function (r) {
+        if (!r.ok || String(r.data.success) !== 'true') throw new Error(r.data.message || 'send failed');
+        wrap.hidden = true;
+        thanks.hidden = false;
+        document.getElementById('booking-thanks-title').focus();
+      })
+      .catch(function () {
+        error.hidden = false;
+        error.scrollIntoView({ block: 'nearest' });
+      })
+      .then(function () {
+        if (timer) clearTimeout(timer);
+        setSending(false);
+      });
+  });
+  document.getElementById('booking-again').addEventListener('click', function () {
+    form.reset();
+    thanks.hidden = true;
+    wrap.hidden = false;
+    document.getElementById('booking-name').focus();
+  });
+})();
+</script>
+</body>
+</html>
